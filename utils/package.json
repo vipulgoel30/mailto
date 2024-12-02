@@ -4,11 +4,15 @@
   "description": "Utils package for the mailto project",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "dev": "nodemon",
     "build": "tsc"
   },
   "keywords": [],
   "author": "Vipul Goel",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
 }

@@ -1,6 +1,12 @@
-export const INFINITE = 100;
+export const INFINITE: number = 100;
 
-export const retryAsync = async <Type = any>(operation: () => Promise<Type>, retries: number, interval: number, maxInterval: number, retryOperation?: () => Promise<any>): Promise<Type> => {
+export const retryAsync = async <Type = any>(
+  operation: () => Promise<Type>,
+  retries: number = 3,
+  interval: number = 50,
+  maxInterval: number = 200,
+  retryOperation?: () => Promise<any>
+): Promise<Type> => {
   try {
     return await operation();
   } catch (err) {

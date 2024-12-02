@@ -2,7 +2,7 @@
   "name": "@mono/producer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/server.js",
   "type": "module",
   "env": {
     "dev": "tsx ./env/generateEnv.ts --env=./env/.env.dev --env-expand=./env/.env",
@@ -10,16 +10,19 @@
   },
   "scripts": {
     "dev": "%NPM_PACKAGE_ENV_DEV% && nodemon",
-    "prod": "%NPM_PACKAGE_ENV_PROD% && nodemon"
+    "prod": "%NPM_PACKAGE_ENV_PROD% && nodemon",
+    "build": "tsc",
+    "deploy": "node --env-file=.env ./dist/server.ts "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mono/utils": "workspace:*",
     "amqplib": "^0.10.4",
     "express": "^4.21.1",
-    "mongoose": "^8.8.1",
-    "@mono/utils": "workspace:*"
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.1"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.5"

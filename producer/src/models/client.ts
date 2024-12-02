@@ -1,29 +1,46 @@
 // Third party imports
 import { Schema, model } from "mongoose";
 
-const clientSchema = new Schema(
+interface ClientI {
+  name: string;
+  keys: string[];
+  logoURL: string;
+  // isStore: boolean;
+}
+
+const clientSchema = new Schema<ClientI>(
   {
-    email: {
+    name: {
       type: String,
       required: true,
+      trim: true,
     },
-    token: {
-      type: String,
+    keys: {
+      type: [String],
+      required: true,
+      unique: true,
     },
     logoURL: {
       type: String,
+      trim: true,
     },
-    isCached: {
-      type: Boolean,
-    },
+    // isStore: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     // billingCycle: {
     //   type: String,
     //   enum: [],
     // },
   },
   {
-    timestamps: {
-      createdAt: true,
-    },
+    timestamps: { createdAt: true, updatedAt: true },
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+
+const Client = model("clients", clientSchema);
+
+export default Client;
+
